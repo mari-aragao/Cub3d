@@ -89,10 +89,11 @@ int	check_numbers(int *number);
 
 int	is_element(char *str);
 void	get_map(t_file *file);
+void	remap(t_file *file);
 
 // map_temp
 void	set_map_temp(t_file *file);
-void	init_map_temp(t_file *file);
+void	init_map(t_file *file, char **map);
 void	cpy_map_to_temp(t_file *file);
 
 

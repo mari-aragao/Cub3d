@@ -66,5 +66,7 @@ int	read_file(char *path, t_file *file)
 		return (1);
 	get_map(file);
 	validate_map(file);
+	remap(file);
+	print_mat(file->map);
 	return (0);
 }

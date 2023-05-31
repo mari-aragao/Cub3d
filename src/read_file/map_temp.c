@@ -1,6 +1,6 @@
 #include "../../include/cub3d.h"
 
-void	init_map_temp(t_file *file)
+void	init_map(t_file *file, char **map)
 {
 	int	i;
 	int	j;
@@ -8,17 +8,17 @@ void	init_map_temp(t_file *file)
 	i = 0;
 	while (i < file->height)
 	{
-		file->map_temp[i] = (char *) malloc(sizeof(char) * (file->widht + 1));
+		map[i] = (char *) malloc(sizeof(char) * (file->widht + 1));
 		j = 0;
 		while (j < file->widht)
 		{
-			file->map_temp[i][j] = ' ';
+			map[i][j] = ' ';
 			j++;
 		}
-		file->map_temp[i][j] = '\0';
+		map[i][j] = '\0';
 		i++;
 	}
-	file->map_temp[i] = NULL;
+	map[i] = NULL;
 }
 
 void	cpy_map_to_temp(t_file *file)
@@ -44,6 +44,6 @@ void	set_map_temp(t_file *file)
 	file->map_temp = (char **) malloc(sizeof(char *) * (file->height + 1));
 	if (file->map_temp == NULL)
 		return ;
-	init_map_temp(file);
+	init_map(file, file->map_temp);
 	cpy_map_to_temp(file);
 }

@@ -20,6 +20,4 @@ void	free_all(t_file *file)
 	get_free(file->colors);
 	if (file->map)
 		get_free(file->map);
-	if (file->map_temp)
-		get_free(file->map_temp);
 }

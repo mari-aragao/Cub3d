@@ -12,6 +12,31 @@ int is_element(char *str)
 	return (1);
 }
 
+void	remap(t_file *file)
+{
+	int	i;
+	int	j;
+	char	**remap;
+
+	remap = (char **) malloc(sizeof(char *) * (file->height + 1));
+	if (remap == NULL)
+		return ;
+	init_map(file, remap);
+	i = 0;
+	while (file->map[i])
+	{
+		j = 0;
+		while (j < ft_strlen(file->map[i]))
+		{
+			remap[i][j] = file->map[i][j];
+			j++;
+		}
+		i++;
+	}
+	get_free(file->map);
+	file->map = remap;
+}
+
 void get_map(t_file *file)
 {
 	int i;

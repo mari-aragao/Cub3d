@@ -13,7 +13,7 @@ int	count_map_widht(char **mat)
 			count = ft_strlen(mat[i]);
 		i++;
 	}
-	return (count + 4);
+	return (count);
 }
 
 static int	is_valid_char(char c)
@@ -125,12 +125,15 @@ int	check_spaces(t_file *file)
 
 int validate_map(t_file *file)
 {
-	file->widht = count_map_widht(file->map);
+	file->widht = count_map_widht(file->map) + 4;
 	file->height += 4;
 	set_map_temp(file);
 	if (check_player(file) != 0)
 		return (1);
 	if (check_spaces(file) != 0)
 		return (1);
+	get_free(file->map_temp);
+	file->widht -= 4;
+	file->height -= 4;
 	return (0);
 }

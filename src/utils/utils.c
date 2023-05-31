@@ -160,7 +160,7 @@ void print_mat(char **mat)
 	i = 0;
 	while (mat[i])
 	{
-		printf("%s\n", mat[i]);
+		printf(":%s:\n", mat[i]);
 		i++;
 	}
 }
