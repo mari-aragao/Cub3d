@@ -65,8 +65,8 @@ int	read_file(char *path, t_file *file)
 	if (validate_colors(file) > 0)
 		return (1);
 	get_map(file);
-	validate_map(file);
+	if (validate_map(file) > 0)
+		return (1);
 	remap(file);
-	print_mat(file->map);
 	return (0);
 }

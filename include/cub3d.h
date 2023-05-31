@@ -1,11 +1,19 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "./defines.h"
+# define WIN_WIDHT 1280
+# define WIN_HEIGHT 960
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
+
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <math.h>
 
 typedef struct s_file
 {
@@ -21,19 +29,30 @@ typedef struct s_file
 	int		widht;
 } t_file;
 
-typedef struct s_mlxdata
+typedef struct s_mlx
 {
-	void *mlx;
-	void *mlx_win;
-	void *img;
-	char *addr;
-	int bits;
-	int line;
-	int endian;
-} t_mlxdata;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_lenght;
+	int		endian;
+} t_mlx;
+
+typedef struct s_all
+{
+	t_file *file;
+	t_mlx *mlx;
+} t_all;
 
 // main
 int	init_elements(t_file *file);
+void	init_mlx(t_mlx *mlx);
+void	render_game(t_mlx *mlx, t_file *file);
+void	set_hook(t_mlx *mlx, t_file *file);
+int	exit_hook(t_mlx *mlx);
+int	key_press_hook(int key, t_mlx *mlx, t_file *file);
 
 //Error
 
@@ -104,13 +123,5 @@ int	check_player(t_file *file);
 int	check_spaces(t_file *file);
 int	check_around_spaces(char **map, int i, int j);
 int	check_around_player(char **map, int i, int j);
-
-
-// errors
-
-//int count_array(char **array);
-
-// ****** Funcoes para testar coisas ******
-
 
 #endif

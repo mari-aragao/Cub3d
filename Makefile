@@ -2,6 +2,7 @@ NAME 		= cub3d
 
 SRCS		=	\
 			src/main.c \
+			src/mlx_functions.c \
 			src/error/error.c \
 			src/utils/utils.c \
 			src/utils/free.c \

@@ -25,21 +25,29 @@ int	init_elements(t_file *file)
 	return (0);
 }
 
-int main(int argc, char **argv) 
+int	main(int argc, char **argv) 
 {
 	t_file file;
+	t_mlx mlx;
 
 	if (check_argc(argc) == 1)
 		return (1);
 	if (check_path(argv[1]) == 1)
 		return (1);
 	if (read_file(argv[1], &file) > 0)
+	{
+		free_all(&file);
 		return (1);
+	}
 	if (file.file == NULL)
 	{
 		free_all(&file);
 		return (1);
 	}
-	free_all(&file);
+	init_mlx(&mlx);
+	set_hook(&mlx, &file);
+	render_game(&mlx, &file);
+	mlx_loop(mlx.mlx);
+//	free_all(&file);
 	return (0);
 }
