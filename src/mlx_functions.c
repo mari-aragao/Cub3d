@@ -36,6 +36,6 @@ int	key_press_hook(int key, t_mlx *mlx, t_file *file)
 void	set_hook(t_mlx *mlx, t_file *file)
 {
 	(void)file;
-	mlx_key_hook(mlx->win, key_press_hook, mlx);
+	//mlx_key_hook(mlx->win, key_press_hook, mlx);
 	mlx_hook(mlx->win, 17, 0, exit_hook, mlx);
 }
