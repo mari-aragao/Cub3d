@@ -8,13 +8,15 @@ SRCS		=	\
 			src/utils/free.c \
 			src/utils/ft_split.c \
 			src/utils/get_next_line.c \
-			src/read_file/read_file.c \
- 			src/read_file/colors.c \
-			src/read_file/check_colors.c \
- 			src/read_file/textures.c \
- 			src/read_file/map.c \
- 			src/read_file/map_temp.c \
-			src/read_file/check_map.c \
+			src/parse/read_file.c \
+ 			src/parse/colors.c \
+			src/parse/check_colors.c \
+ 			src/parse/textures.c \
+ 			src/parse/map.c \
+ 			src/parse/map_temp.c \
+			src/parse/check_map.c \
+			src/raycasting/raycasting.c \
+
 
 OBJS		= $(SRCS:.c=.o)
 

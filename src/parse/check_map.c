@@ -16,7 +16,7 @@ int	count_map_widht(char **mat)
 	return (count);
 }
 
-static int	is_valid_char(char c)
+int	is_valid_char(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (2);

@@ -2,7 +2,7 @@
 # define CUB3D_H
 
 # define WIN_WIDHT 640 
-# define WIN_HEIGHT 480
+# define WIN_HEIGHT 680
 # define NO 0
 # define SO 1
 # define WE 2
@@ -40,13 +40,58 @@ typedef struct s_mlx
 	int		endian;
 } t_mlx;
 
-typedef struct s_all
+typedef struct s_rayc
 {
-	t_file *file;
-	t_mlx *mlx;
-} t_all;
+	double	pos_x;	//posicao X e Y do jogador
+	double	pos_y;
+	double	dir_x;	//direcao X e Y do jogador
+	double	dir_y;
+	double	plane_x; // plano X e Y da camera
+	double	plane_y;
 
-// main
+	double	olddir_x;
+	double	olddir_y;
+	double	oldplane_x;
+	double	oldplane_y;
+
+	double	cam_x;	//coordenada X no plano da camera
+	double	raydir_x;	//soma do vetor dir + plane
+	double	raydir_y;
+
+	int		map_x;	//coordenada do quadrado atual do mapa
+	int		map_y;
+	double	sidedist_x;	// distancia do raio ate atingit o primeiro quadrado
+	double	sidedist_y;
+	double	deltadist_x;	// distancia do comeco ao fim do proximo quadrado
+	double	deltadist_y;
+	double	perp_wall_dist;	//comprimento do raio
+	int		step_x;	// direcao do raio em X ou Y (-1 ou +1)
+	int		step_y; 
+	int		hit;	//indica se encontrou a parede ou nao (0 ou 1)
+	int		side;	//indica colisao no lado X ou Y (0 ou 1)
+
+
+	double	time;		//tempo do frame atual
+	double	oldtime;	//tempo do ultimo frame
+	double	frametime;
+
+	double	move_speed;	// valor em quadrados / segundos
+	double	rot_speed;	// valor em raio / segundos
+
+} t_rayc;
+
+
+typedef struct s_draw
+{
+	int	x;
+	int	height;	// tamanho da linha a ser desenhada em X
+	int	y_start;	//indica o primeiro e ultimo pixel da linha em cada X
+	int	y_end;
+	int	color;
+	
+} t_draw;
+
+// mlx_functions
 int	init_elements(t_file *file);
 void	init_mlx(t_mlx *mlx);
 void	render_game(t_mlx *mlx, t_file *file);
@@ -119,9 +164,16 @@ void	cpy_map_to_temp(t_file *file);
 // validate map
 int validate_map(t_file *file);
 int	count_map_width(char **mat);
+int	is_valid_char(char c);
 int	check_player(t_file *file);
 int	check_spaces(t_file *file);
 int	check_around_spaces(char **map, int i, int j);
 int	check_around_player(char **map, int i, int j);
+
+//raycasting
+void	raycasting(t_mlx *mlx, t_file *file);
+void	draw_wall(t_mlx *mlx, t_draw *wall);
+void	init_rc(t_file *file, t_rayc *rc);
+void	set_initial_pos(t_file *file, t_rayc *rc);
 
 #endif

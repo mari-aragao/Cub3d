@@ -27,8 +27,8 @@ int	init_elements(t_file *file)
 
 int	main(int argc, char **argv) 
 {
-	t_file file;
-	t_mlx mlx;
+	t_file	file;
+	t_mlx	mlx;
 
 	if (check_argc(argc) == 1)
 		return (1);
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	init_mlx(&mlx);
 	set_hook(&mlx, &file);
 	render_game(&mlx, &file);
-	mlx_loop(mlx.mlx);
+//	mlx_loop(mlx.mlx);
 //	free_all(&file);
 	return (0);
 }

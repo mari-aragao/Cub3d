@@ -8,11 +8,12 @@ void	init_mlx(t_mlx *mlx)
 
 void	render_game(t_mlx *mlx, t_file *file)
 {
-	(void)file;
-	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDHT, WIN_HEIGHT);
-	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_lenght, &mlx->endian);
-//	raycasting(file);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+//	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDHT, WIN_HEIGHT);
+//	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_lenght, &mlx->endian);
+	raycasting(mlx, file);
+//	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+////	mlx_destroy_image(mlx->mlx, mlx->img);
+////	mlx_loop(mlx->mlx);
 }
 
 int	exit_hook(t_mlx *mlx)
@@ -23,13 +24,14 @@ int	exit_hook(t_mlx *mlx)
 }
 int	key_press_hook(int key, t_mlx *mlx, t_file *file)
 {
+	(void)file;
 	if (key == 53)
 	{
 		mlx_destroy_window(mlx->mlx, mlx->win);
 		exit(0);
 	}
 	mlx_destroy_image(mlx->mlx, mlx->img);
-	render_game(mlx, file);
+//	render_game(mlx, file);
 	return (0);
 }
 
