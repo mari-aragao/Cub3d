@@ -56,10 +56,7 @@ int	read_file(char *path, t_file *file)
 	if (get_textures(file) == 1)
 		return (write(2, "Error: Wrong textures\n", 22));
 	if (get_colors(file) == 1)
-	{	
-		printf("aqui\n");
 		return (write(2, "Error: Wrong colors\n", 20));
-	}
 	if (check_elements(file) > 0)
 		return (1);
 	if (validate_colors(file) > 0)

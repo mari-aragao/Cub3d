@@ -6,14 +6,10 @@ void	init_mlx(t_mlx *mlx)
 	mlx->win = mlx_new_window(mlx->mlx, WIN_WIDHT, WIN_HEIGHT, "Cub3d");
 }
 
-void	render_game(t_mlx *mlx, t_file *file)
+void	init_image(t_mlx *mlx)
 {
-//	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDHT, WIN_HEIGHT);
-//	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_lenght, &mlx->endian);
-	raycasting(mlx, file);
-//	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
-////	mlx_destroy_image(mlx->mlx, mlx->img);
-////	mlx_loop(mlx->mlx);
+	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDHT, WIN_HEIGHT);
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_lenght, &mlx->endian);
 }
 
 int	exit_hook(t_mlx *mlx)

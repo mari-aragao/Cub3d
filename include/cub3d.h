@@ -94,6 +94,7 @@ typedef struct s_draw
 // mlx_functions
 int	init_elements(t_file *file);
 void	init_mlx(t_mlx *mlx);
+void	init_image(t_mlx *mlx);
 void	render_game(t_mlx *mlx, t_file *file);
 void	set_hook(t_mlx *mlx, t_file *file);
 int	exit_hook(t_mlx *mlx);
@@ -171,7 +172,7 @@ int	check_around_spaces(char **map, int i, int j);
 int	check_around_player(char **map, int i, int j);
 
 //raycasting
-void	raycasting(t_mlx *mlx, t_file *file);
+void	raycasting(t_file *file);
 void	draw_wall(t_mlx *mlx, t_draw *wall);
 void	init_rc(t_file *file, t_rayc *rc);
 void	set_initial_pos(t_file *file, t_rayc *rc);
