@@ -1,12 +1,13 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDHT 640 
-# define WIN_HEIGHT 680
+# define WIN_WIDHT 680 
+# define WIN_HEIGHT 640
 # define NO 0
 # define SO 1
 # define WE 2
 # define EA 3
+# define PI 3.141592653
 
 # include "../mlx/mlx.h"
 # include <fcntl.h>
@@ -20,6 +21,7 @@ typedef struct s_file
 	char	**file;
 	int		file_lines;
 	char	**textures;
+	void	**textures_ptr;
 	char	**colors;
 	int		ceiling[3];
 	int		floor[3];
@@ -70,11 +72,6 @@ typedef struct s_rayc
 	int		hit;	//indica se encontrou a parede ou nao (0 ou 1)
 	int		side;	//indica colisao no lado X ou Y (0 ou 1)
 
-
-	double	time;		//tempo do frame atual
-	double	oldtime;	//tempo do ultimo frame
-	double	frametime;
-
 	double	move_speed;	// valor em quadrados / segundos
 	double	rot_speed;	// valor em raio / segundos
 
@@ -91,14 +88,16 @@ typedef struct s_draw
 	
 } t_draw;
 
+// time
+long int	get_time(void);
 // mlx_functions
 int	init_elements(t_file *file);
 void	init_mlx(t_mlx *mlx);
 void	init_image(t_mlx *mlx);
 void	render_game(t_mlx *mlx, t_file *file);
-void	set_hook(t_mlx *mlx, t_file *file);
+//void	set_hook(t_mlx *mlx, t_file *file, t_rayc *rc);
 int	exit_hook(t_mlx *mlx);
-int	key_press_hook(int key, t_mlx *mlx, t_file *file);
+int	key_hook(int key, t_mlx *mlx, t_rayc *rc);
 
 //Error
 

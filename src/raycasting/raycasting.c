@@ -52,8 +52,6 @@ void	init_rc(t_file *file, t_rayc *rc)
 	rc->dir_y = 0;
 	rc->plane_x = 0;
 	rc->plane_y = 0.66;
-	rc->time = 0;
-	rc->oldtime = 0;
 	rc->hit = 0;
 }
 
@@ -65,7 +63,9 @@ void	raycasting(t_file *file)
 
 	init_rc(file, &rc);
 	init_mlx(&mlx);
-	set_hook(&mlx, file);
+	mlx_hook(mlx.win, 17, 0, exit_hook, &mlx);
+	mlx_hook(mlx.win, 2, 1L << 0, key_hook, &mlx);
+	//set_hook(&mlx, file, &rc);
 	while (1)
 	{	
 		init_image(&mlx);
@@ -131,12 +131,15 @@ void	raycasting(t_file *file)
 			wall.y_end = wall.height / 2 + WIN_HEIGHT / 2;
 			if (wall.y_end >= WIN_HEIGHT)
 				wall.y_end = WIN_HEIGHT - 1;
-    			wall.color = 0x00FF00;
+    			wall.color = 65399;
 			if (rc.side == 1)
 				wall.color /= 2;
 			draw_wall(&mlx, &wall);
 			wall.x++;
 		}
+		rc.move_speed = 5.0;
+		rc.rot_speed = 3.0 * (PI / 180);
+
 		mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
 		mlx_destroy_image(mlx.mlx, mlx.img);
 		mlx_loop(mlx.mlx);

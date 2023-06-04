@@ -48,6 +48,7 @@ int     check_elements(t_file *file)
                 if (file->colors[i] == NULL)
                         return (write(2, "Error: Wrong colors\n", 20));
         }
+//	set_textures_ptr(file);
         return (0);
 }
 

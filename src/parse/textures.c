@@ -1,5 +1,39 @@
 #include "../../include/cub3d.h"
+/*
+int	is_xpm_file(char *path)
+{
+	int i;
 
+	i = ft_strlen(path) - 1;
+	while (path[i] != '.' && i > 0)
+		i--;
+	if (ft_strcmp(&path[i], ".xpm") == 0)
+		return (0)
+	return (1);
+}
+
+int	set_textures_ptr(t_file *file)
+{
+	int	i;
+	int	error;
+
+	i = 0;
+	error = 0;
+	file->texture_ptr = (void **) malloc(sizeof(void *) * 5);
+	while (i <= 5)
+	{
+		if (is_xpm_file(file->texture[i]) == 0)
+			file->texture_ptr[i] = mlx_xpm_file_to_image();
+//		else
+//			file->texture_ptr[i] = ??
+		if (file->texture_ptr[i] == NULL)
+			error = 1;
+		i++;
+	}
+	file->texture_ptr[i] = NULL;
+	return (error);
+}
+*/
 int	get_textures(t_file *file) 
 {
 	int	i;
