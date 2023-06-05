@@ -48,6 +48,11 @@ int	main(int argc, char **argv)
 	}
 	init_rc(&file, &rc); 
 	init_mlx(&mlx);
+	if (set_xpm_img(&file, &mlx) == 1)
+	{
+		free_all(&file);
+		return (1);
+	}
 	all.mlx = &mlx;
 	all.file = &file;
 	all.rc = &rc;

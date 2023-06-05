@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDHT 1280 
+# define WIN_WIDTH 1280 
 # define WIN_HEIGHT 1080
 # define NO 0
 # define SO 1
@@ -16,12 +16,23 @@
 # include <stdio.h>
 # include <math.h>
 
+typedef struct	s_img
+{
+	int	height;
+	int	width;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_lenght;
+	int		endian;
+} t_img;
+
 typedef struct s_file
 {
 	char	**file;
 	int		file_lines;
 	char	**textures;
-	void	**textures_ptr;
+	t_img	img_txt[4];
 	char	**colors;
 	int		ceiling[3];
 	int		floor[3];
@@ -30,7 +41,7 @@ typedef struct s_file
 	char	**map;
 	char	**map_temp;
 	int		height;
-	int		widht;
+	int		width;
 } t_file;
 
 typedef struct s_mlx
@@ -46,11 +57,11 @@ typedef struct s_mlx
 
 typedef struct s_rayc
 {
-	double	pos_x;	//posicao X e Y do jogador
+	double	pos_x;	
 	double	pos_y;
-	double	dir_x;	//direcao X e Y do jogador
+	double	dir_x;
 	double	dir_y;
-	double	plane_x; // plano X e Y da camera
+	double	plane_x;
 	double	plane_y;
 
 	double	olddir_x;
@@ -58,32 +69,32 @@ typedef struct s_rayc
 	double	oldplane_x;
 	double	oldplane_y;
 
-	double	cam_x;	//coordenada X no plano da camera
-	double	raydir_x;	//soma do vetor dir + plane
+	double	cam_x;	
+	double	raydir_x;
 	double	raydir_y;
 
-	int		map_x;	//coordenada do quadrado atual do mapa
+	int		map_x;	
 	int		map_y;
-	double	sidedist_x;	// distancia do raio ate atingit o primeiro quadrado
+	double	sidedist_x;
 	double	sidedist_y;
-	double	deltadist_x;	// distancia do comeco ao fim do proximo quadrado
+	double	deltadist_x;
 	double	deltadist_y;
-	double	perp_wall_dist;	//comprimento do raio
-	int		step_x;	// direcao do raio em X ou Y (-1 ou +1)
+	double	perp_wall_dist;
+	int		step_x;	
 	int		step_y; 
-	int		hit;	//indica se encontrou a parede ou nao (0 ou 1)
-	int		side;	//indica colisao no lado X ou Y (0 ou 1)
+	int		hit;
+	int		side;
 
-	double	move_speed;	// valor em quadrados / segundos
-	double	rot_speed;	// valor em raio / segundos
+	double	move_speed;
+	double	rot_speed;
 
 } t_rayc;
 
 typedef struct s_draw
 {
 	int	x;
-	int	height;	// tamanho da linha a ser desenhada em X
-	int	y_start;	//indica o primeiro e ultimo pixel da linha em cada X
+	int	height;	
+	int	y_start;
 	int	y_end;
 	int	color;
 	
@@ -105,6 +116,7 @@ int	exit_hook(t_mlx *mlx);
 int	is_wall(t_file *file, int x, int y);
 int	key_hook(int key, void *param);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	my_mlx_get_addr(t_img *img);
 
 //Error
 
@@ -148,6 +160,8 @@ int		get_textures(t_file *file);
 int		is_texture(char *str);
 int		check_textures(char **mat);
 int		split_textures(t_file *file);
+int		is_xpm_file(char *path);
+int		set_xpm_img(t_file *file, t_mlx *mlx);
 
 // colors
 

@@ -19,7 +19,7 @@ void	set_initial_pos(t_file *file, t_rayc *rc)
 	int	y;
 
 	x = 0;
-	while (x < file->widht)
+	while (x < file->width)
 	{
 		y = 0;
 		while (y < file->height)
@@ -82,9 +82,9 @@ void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
 	t_draw wall;
 
 	wall.x = 0;
-	while (wall.x < WIN_WIDHT)
+	while (wall.x < WIN_WIDTH)
 	{
-		rc->cam_x = 2 * wall.x / (double)WIN_WIDHT - 1;
+		rc->cam_x = 2 * wall.x / (double)WIN_WIDTH - 1;
 		rc->raydir_x = rc->dir_x + rc->plane_x * rc->cam_x;
 		rc->raydir_y = rc->dir_y + rc->plane_y * rc->cam_x;
 

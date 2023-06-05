@@ -1,5 +1,11 @@
 #include "../include/cub3d.h"
 
+void	my_mlx_get_addr(t_img *img)
+{
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_lenght, &img->endian);
+	
+}
+
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char *dest;
@@ -12,12 +18,12 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, WIN_WIDHT, WIN_HEIGHT, "Cub3d");
+	mlx->win = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 }
 
 void	init_image(t_mlx *mlx)
 {
-	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDHT, WIN_HEIGHT);
+	mlx->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_lenght, &mlx->endian);
 }
 

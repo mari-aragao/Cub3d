@@ -8,9 +8,9 @@ void	init_map(t_file *file, char **map)
 	i = 0;
 	while (i < file->height)
 	{
-		map[i] = (char *) malloc(sizeof(char) * (file->widht + 1));
+		map[i] = (char *) malloc(sizeof(char) * (file->width + 1));
 		j = 0;
-		while (j < file->widht)
+		while (j < file->width)
 		{
 			map[i][j] = ' ';
 			j++;

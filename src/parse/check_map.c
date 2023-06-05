@@ -1,6 +1,6 @@
 #include "../../include/cub3d.h"
 
-int	count_map_widht(char **mat)
+int	count_map_width(char **mat)
 {
 	int	i;
 	int	count;
@@ -36,7 +36,7 @@ int	check_player(t_file *file)
 	while (i < file->height - 3)
 	{
 		j = 2;
-		while (j < file->widht - 3)
+		while (j < file->width - 3)
 		{
 			if (is_valid_char(file->map_temp[i][j]) == 2 && error == 0)
 				error = 1;
@@ -104,7 +104,7 @@ int	check_spaces(t_file *file)
 	while (i < file->height - 1)
 	{
 		j = 1;
-		while (j < file->widht - 1)
+		while (j < file->width - 1)
 		{
 			if (file->map_temp[i][j] == ' ')
 			{
@@ -125,7 +125,7 @@ int	check_spaces(t_file *file)
 
 int validate_map(t_file *file)
 {
-	file->widht = count_map_widht(file->map) + 4;
+	file->width = count_map_width(file->map) + 4;
 	file->height += 4;
 	set_map_temp(file);
 	if (check_player(file) != 0)
@@ -133,7 +133,7 @@ int validate_map(t_file *file)
 	if (check_spaces(file) != 0)
 		return (1);
 	get_free(file->map_temp);
-	file->widht -= 4;
+	file->width -= 4;
 	file->height -= 4;
 	return (0);
 }
