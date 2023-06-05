@@ -1,8 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDHT 1260 
-# define WIN_HEIGHT 1020
+# define WIN_WIDHT 680 
+# define WIN_HEIGHT 640
 # define NO 0
 # define SO 1
 # define WE 2
@@ -100,6 +100,7 @@ void	init_mlx(t_mlx *mlx);
 void	init_image(t_mlx *mlx);
 //void	set_hook(t_mlx *mlx, t_file *file, t_rayc *rc);
 int	exit_hook(t_mlx *mlx);
+int	is_wall(t_file *file, int x, int y);
 int	key_hook(int key, void *param);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 

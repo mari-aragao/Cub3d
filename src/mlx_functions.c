@@ -29,7 +29,7 @@ int	exit_hook(t_mlx *mlx)
 
 int	is_wall(t_file *file, int x, int y)
 {
-	if (file->map[x][y] == 1)
+	if (file->map[x][y] == '1')
 		return (1);
 	return (0);
 }
