@@ -25,19 +25,44 @@ int	exit_hook(t_mlx *mlx)
 {
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	exit(0);
-
 }
+
+int	is_wall(t_file *file, int x, int y)
+{
+	if (file->map[x][y] == 1)
+		return (1);
+	return (0);
+}
+
 int	move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx)
 {
 	if (key == 119) // w
 	{
-		rc->pos_x += rc->dir_x * rc->move_speed;
-		printf("w\n");
+		if (file->map[(int)(rc->pos_x + rc->dir_x * rc->move_speed)][(int)rc->pos_y] != 0)
+			rc->pos_x += rc->dir_x * rc->move_speed;
+		if (file->map[(int)rc->pos_x][(int)(rc->pos_y + rc->dir_y * rc->move_speed)] != 0)
+			rc->pos_y += rc->dir_y * rc->move_speed;
 	}
 	else if (key == 115) //s
 	{
-		rc->pos_x -= rc->dir_x * rc->move_speed;
-		printf("s\n");
+		if (file->map[(int)(rc->pos_x - rc->dir_x * rc->move_speed)][(int)rc->pos_y] != 0)
+			rc->pos_x -= rc->dir_x * rc->move_speed;
+		if (file->map[(int)rc->pos_x][(int)(rc->pos_y - rc->dir_y * rc->move_speed)] != 0)
+			rc->pos_y -= rc->dir_y * rc->move_speed;
+	}
+	else if (key == 97) //a
+	{
+		if (file->map[(int)(rc->pos_x - rc->plane_x * rc->move_speed)][(int)rc->pos_y] != 0)
+			rc->pos_x -= rc->plane_x * rc->move_speed;
+		if (file->map[(int)rc->pos_x][(int)(rc->pos_y - rc->plane_y * rc->move_speed)] != 0)
+			rc->pos_y -= rc->plane_y * rc->move_speed;
+	}
+	else if (key == 100) //d
+	{
+		if (file->map[(int)(rc->pos_x + rc->plane_x * rc->move_speed)][(int)rc->pos_y] != 0)
+			rc->pos_x += rc->plane_x * rc->move_speed;
+		if (file->map[(int)rc->pos_x][(int)(rc->pos_y + rc->plane_y * rc->move_speed)] != 0)
+			rc->pos_y += rc->plane_y * rc->move_speed;
 	}
 	else if (key == 65361) // >
 	{

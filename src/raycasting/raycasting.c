@@ -48,7 +48,7 @@ void	init_rc(t_file *file, t_rayc *rc)
 	rc->oldplane_x = 0.0;
 	rc->oldplane_y = 0.66;
 	rc->hit = 0;
-	rc->move_speed = 5.0;
+	rc->move_speed = 5.0 * (3.141592 / 180);
 	rc->rot_speed = 3.0 * (3.141592 / 180);
 }
 

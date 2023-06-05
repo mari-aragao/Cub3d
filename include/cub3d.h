@@ -1,8 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDHT 680 
-# define WIN_HEIGHT 640
+# define WIN_WIDHT 1260 
+# define WIN_HEIGHT 1020
 # define NO 0
 # define SO 1
 # define WE 2
