@@ -1,16 +1,21 @@
 #include "../../include/cub3d.h"
 
-void	draw_wall(t_mlx *mlx, t_draw *wall)
+void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file)
 {
 	int i;
 
 	i = 0;
-	while (i < (wall->y_end - wall->y_start))
-	{	
-		my_mlx_pixel_put(mlx, wall->x, wall->y_start + i, wall->color);
+	(void) file;
+	while (i < WIN_HEIGHT - 1)
+	{
+		if (i < wall->y_start)
+			my_mlx_pixel_put(mlx, wall->x, i, file->dec_ceiling);
+		if (i >= wall->y_end)
+			my_mlx_pixel_put(mlx, wall->x, i, file->dec_floor);
+		if (i < (wall->y_end - wall->y_start))
+			my_mlx_pixel_put(mlx, wall->x, wall->y_start + i, wall->color);
 		i++;
 	}
-	return ;
 }
 
 void	set_initial_pos(t_file *file, t_rayc *rc)
@@ -143,10 +148,10 @@ void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
 		wall.y_end = wall.height / 2 + WIN_HEIGHT / 2;
 		if (wall.y_end >= WIN_HEIGHT)
 			wall.y_end = WIN_HEIGHT - 1;
-    		wall.color = file->dec_floor;
+    		wall.color = 16777216;
 		if (rc->side == 1)
 			wall.color /= 2;
-		draw_wall(mlx, &wall);
+		draw_wall(mlx, &wall, file);
 		wall.x++;
 	}
 }

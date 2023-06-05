@@ -198,7 +198,7 @@ int	check_around_player(char **map, int i, int j);
 //raycasting
 void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc);
 void	render_game(t_mlx *mlx, t_file *file, t_rayc *rc);
-void	draw_wall(t_mlx *mlx, t_draw *wall);
+void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file);
 void	init_rc(t_file *file, t_rayc *rc);
 void	set_initial_pos(t_file *file, t_rayc *rc);
 
