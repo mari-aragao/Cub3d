@@ -77,7 +77,6 @@ typedef struct s_rayc
 
 } t_rayc;
 
-
 typedef struct s_draw
 {
 	int	x;
@@ -88,16 +87,21 @@ typedef struct s_draw
 	
 } t_draw;
 
-// time
-long int	get_time(void);
+typedef struct s_all
+{
+	t_mlx	*mlx;
+	t_file	*file;
+	t_rayc	*rc;
+} t_all;
+
 // mlx_functions
 int	init_elements(t_file *file);
 void	init_mlx(t_mlx *mlx);
 void	init_image(t_mlx *mlx);
-void	render_game(t_mlx *mlx, t_file *file);
 //void	set_hook(t_mlx *mlx, t_file *file, t_rayc *rc);
 int	exit_hook(t_mlx *mlx);
-int	key_hook(int key, t_mlx *mlx, t_rayc *rc);
+int	key_hook(int key, void *param);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
 //Error
 
@@ -171,7 +175,8 @@ int	check_around_spaces(char **map, int i, int j);
 int	check_around_player(char **map, int i, int j);
 
 //raycasting
-void	raycasting(t_file *file);
+void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc);
+void	render_game(t_mlx *mlx, t_file *file, t_rayc *rc);
 void	draw_wall(t_mlx *mlx, t_draw *wall);
 void	init_rc(t_file *file, t_rayc *rc);
 void	set_initial_pos(t_file *file, t_rayc *rc);

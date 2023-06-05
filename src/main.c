@@ -28,6 +28,9 @@ int	init_elements(t_file *file)
 int	main(int argc, char **argv) 
 {
 	t_file	file;
+	t_rayc	rc;
+	t_mlx	mlx;
+	t_all	all;
 
 	if (check_argc(argc) == 1)
 		return (1);
@@ -43,10 +46,16 @@ int	main(int argc, char **argv)
 		free_all(&file);
 		return (1);
 	}
-	//init_mlx(&mlx);
-	//set_hook(&mlx, &file);
-	raycasting(&file);
-//	mlx_loop(mlx.mlx);
-//	free_all(&file);
+	init_rc(&file, &rc); 
+	init_mlx(&mlx);
+	all.mlx = &mlx;
+	all.file = &file;
+	all.rc = &rc;
+	
+	mlx_hook(mlx.win, 17, 0, exit_hook, &mlx);
+	mlx_hook(mlx.win, 2, 1L << 0, key_hook, &all);
+	render_game(&mlx, &file, &rc);
+	mlx_loop(mlx.mlx);
+	free_all(&file);
 	return (0);
 }

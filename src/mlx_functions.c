@@ -1,5 +1,14 @@
 #include "../include/cub3d.h"
 
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+{
+	char *dest;
+	
+	dest = mlx->addr + (y * mlx->line_lenght + x * (mlx->bpp / 8));
+	*(unsigned int *)dest = color;
+	return ;
+}
+
 void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
@@ -18,53 +27,49 @@ int	exit_hook(t_mlx *mlx)
 	exit(0);
 
 }
-int	move_player(int key, t_rayc *rc)
+int	move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx)
 {
-	//move
-	if (key == 13) // w
+	if (key == 119) // w
+	{
 		rc->pos_x += rc->dir_x * rc->move_speed;
-	else if (key == 1) //s
+		printf("w\n");
+	}
+	else if (key == 115) //s
+	{
 		rc->pos_x -= rc->dir_x * rc->move_speed;
-	else if (key == 123) // >
+		printf("s\n");
+	}
+	else if (key == 65361) // >
 	{
 		rc->olddir_x = rc->dir_x;
-		rc->dir_x = rc->dir_x * acos(rc->rot_speed) - rc->dir_y * asin(rc->rot_speed);
-		rc->dir_y = rc->olddir_x * asin(rc->rot_speed) + rc->dir_y * acos(rc->rot_speed);
+		rc->dir_x = rc->dir_x * cosf(rc->rot_speed) - rc->dir_y * sinf(rc->rot_speed);
+		rc->dir_y = rc->olddir_x * sinf(rc->rot_speed) + rc->dir_y * cosf(rc->rot_speed);
 		rc->oldplane_x = rc->plane_x;
-		rc->plane_x = rc->plane_x * acos(rc->rot_speed) - rc->plane_y * asin(rc->rot_speed);
-		rc->plane_y = rc->oldplane_x * asin(rc->rot_speed) + rc->plane_y * acos(rc->rot_speed);
+		rc->plane_x = rc->plane_x * cosf(rc->rot_speed) - rc->plane_y * sinf(rc->rot_speed);
+		rc->plane_y = rc->oldplane_x * sinf(rc->rot_speed) + rc->plane_y * cosf(rc->rot_speed);
 	}
-	else if (key == 124) // <
+	else if (key == 65363) // <
 	{
 		rc->olddir_x = rc->dir_x;
-		rc->dir_x = rc->dir_x * acos(-rc->rot_speed) - rc->dir_y * asin(-rc->rot_speed);
-		rc->dir_y = rc->olddir_x * asin(-rc->rot_speed) + rc->dir_y * acos(-rc->rot_speed);
+		rc->dir_x = rc->dir_x * cos(-rc->rot_speed) - rc->dir_y * sin(-rc->rot_speed);
+		rc->dir_y = rc->olddir_x * sin(-rc->rot_speed) + rc->dir_y * cos(-rc->rot_speed);
 		rc->oldplane_x = rc->plane_x;
-		rc->plane_x = rc->plane_x * acos(-rc->rot_speed) - rc->plane_y * asin(-rc->rot_speed);
-		rc->plane_y = rc->oldplane_x * asin(-rc->rot_speed) + rc->plane_y * acos(-rc->rot_speed);
+		rc->plane_x = rc->plane_x * cos(-rc->rot_speed) - rc->plane_y * sin(-rc->rot_speed);
+		rc->plane_y = rc->oldplane_x * sin(-rc->rot_speed) + rc->plane_y * cos(-rc->rot_speed);
 	}
-	//mlx_destroy_image(mlx->mlx, mlx->img);
-//	render_game(mlx, file);
+	mlx_destroy_image(mlx->mlx, mlx->img);
+	render_game(mlx, file, rc);
 	return (0);
 }
 
-int	key_hook(int key, t_mlx *mlx, t_rayc *rc)
+int	key_hook(int key, void *param)
 {
-//	t_rayc *rc;
+	t_all *all;
 
-//	rc = (t_rayc *) param;
-	if (key == 53)
-		exit_hook(mlx);
-	move_player(key, rc);
+	all = (t_all *)param;
+	if (key == 65307)
+		exit_hook(all->mlx);
+	move_player(key, all->file, all->rc, all->mlx);
 	return (0);
 
 }
-
-/*void	set_hook(t_mlx *mlx, t_file *file, t_rayc *rc)
-{
-	(void)file;
-	(void)rc;
-//	mlx_key_hook(mlx->win, key_hook, mlx);
-//	mlx_hook(mlx->win, 17, 0, exit_hook, mlx);
-	return ;
-}*/
