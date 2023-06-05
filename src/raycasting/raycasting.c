@@ -1,11 +1,12 @@
 #include "../../include/cub3d.h"
 
-void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file)
+void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc)
 {
 	int i;
 
 	i = 0;
 	(void) file;
+	(void) rc;
 	while (i < WIN_HEIGHT - 1)
 	{
 		if (i < wall->y_start)
@@ -148,10 +149,23 @@ void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
 		wall.y_end = wall.height / 2 + WIN_HEIGHT / 2;
 		if (wall.y_end >= WIN_HEIGHT)
 			wall.y_end = WIN_HEIGHT - 1;
-    		wall.color = 16777216;
+		if (rc->side == 0)
+		{
+			if (rc->map_x < (int)rc->pos_x)
+    				wall.color = 16711680; //vermelho norte
+			else
+    				wall.color = 8388608; //marrom sul
+		}
 		if (rc->side == 1)
-			wall.color /= 2;
-		draw_wall(mlx, &wall, file);
+		{
+			if (rc->map_y < (int)rc->pos_y)
+				wall.color = 16753920; //laranja oeste
+			else
+				wall.color = 16766720; //amarelo leste
+		}
+		draw_wall(mlx, &wall, file, rc);
+	//	printf("mapx = %d && mapy = %d\n", rc->map_x, rc->map_y);
+	//	printf("posx = %f && posy = %f\n", rc->pos_x, rc->pos_y);
 		wall.x++;
 	}
 }
