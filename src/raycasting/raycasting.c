@@ -143,7 +143,7 @@ void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
 		wall.y_end = wall.height / 2 + WIN_HEIGHT / 2;
 		if (wall.y_end >= WIN_HEIGHT)
 			wall.y_end = WIN_HEIGHT - 1;
-    		wall.color = 65399;
+    		wall.color = file->dec_floor;
 		if (rc->side == 1)
 			wall.color /= 2;
 		draw_wall(mlx, &wall);

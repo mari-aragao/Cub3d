@@ -1,8 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDHT 680 
-# define WIN_HEIGHT 640
+# define WIN_WIDHT 1280 
+# define WIN_HEIGHT 1080
 # define NO 0
 # define SO 1
 # define WE 2
@@ -25,6 +25,8 @@ typedef struct s_file
 	char	**colors;
 	int		ceiling[3];
 	int		floor[3];
+	int		dec_ceiling;
+	int		dec_floor;
 	char	**map;
 	char	**map_temp;
 	int		height;
@@ -129,6 +131,10 @@ void	get_free(char **mat);
 void	free_all(t_file *file);
 
 char	*get_next_line(int fd);
+
+void	calculate_decimal_color(t_file *file);
+char	*decimal_to_hexa(int *decimal);
+int	hexa_to_decimal(char *hexa);
 
 // Read file
 

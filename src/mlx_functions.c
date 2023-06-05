@@ -38,23 +38,23 @@ int	move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx)
 {
 	if (key == 119) // w
 	{
-		if (file->map[(int)(rc->pos_x + rc->dir_x * rc->move_speed)][(int)rc->pos_y] != 0)
+		if (is_wall (file, (int)(rc->pos_x + rc->dir_x * rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x += rc->dir_x * rc->move_speed;
-		if (file->map[(int)rc->pos_x][(int)(rc->pos_y + rc->dir_y * rc->move_speed)] != 0)
+		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y + rc->dir_y * rc->move_speed)) == 0)
 			rc->pos_y += rc->dir_y * rc->move_speed;
 	}
 	else if (key == 115) //s
 	{
-		if (file->map[(int)(rc->pos_x - rc->dir_x * rc->move_speed)][(int)rc->pos_y] != 0)
+		if (is_wall(file, (int)(rc->pos_x - rc->dir_x * rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x -= rc->dir_x * rc->move_speed;
-		if (file->map[(int)rc->pos_x][(int)(rc->pos_y - rc->dir_y * rc->move_speed)] != 0)
+		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y - rc->dir_y * rc->move_speed)) == 0)
 			rc->pos_y -= rc->dir_y * rc->move_speed;
 	}
 	else if (key == 97) //a
 	{
-		if (file->map[(int)(rc->pos_x - rc->plane_x * rc->move_speed)][(int)rc->pos_y] != 0)
+		if (is_wall(file, (int)(rc->pos_x - rc->plane_x * rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x -= rc->plane_x * rc->move_speed;
-		if (file->map[(int)rc->pos_x][(int)(rc->pos_y - rc->plane_y * rc->move_speed)] != 0)
+		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y - rc->plane_y * rc->move_speed)) == 0)
 			rc->pos_y -= rc->plane_y * rc->move_speed;
 	}
 	else if (key == 100) //d

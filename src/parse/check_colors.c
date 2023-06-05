@@ -71,6 +71,8 @@ int validate_colors(t_file *file)
 		write(2, "cub3d: Error: Wrong colors\n", 28);
 		return (1);
 	}
+	calculate_decimal_color(file);
+	//printf("floor = %d && ceiling = %d\n", file->dec_floor, file->dec_ceiling);
 	if (check_numbers(file->floor) > 0)
 	{
 		write(2, "cub3d: Error: Wrong colors\n", 28);

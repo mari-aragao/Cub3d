@@ -5,6 +5,7 @@ SRCS		=	\
 			src/mlx_functions.c \
 			src/error/error.c \
 			src/utils/utils.c \
+			src/utils/converter.c \
 			src/utils/free.c \
 			src/utils/ft_split.c \
 			src/utils/get_next_line.c \
