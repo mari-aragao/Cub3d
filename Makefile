@@ -13,6 +13,7 @@ SRCS		=	\
  			src/parse/colors.c \
 			src/parse/check_colors.c \
  			src/parse/textures.c \
+			src/parse/read_textures.c \
  			src/parse/map.c \
  			src/parse/map_temp.c \
 			src/parse/check_map.c \

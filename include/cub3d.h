@@ -87,6 +87,15 @@ typedef struct s_rayc
 
 	double	move_speed;
 	double	rot_speed;
+	t_img	*texture;
+
+	int		tex_x;
+	int		tex_y;
+	int		tex_width;
+	int		tex_height;
+	double		tex_pos;
+	int		pitch;
+	double		step;
 
 } t_rayc;
 

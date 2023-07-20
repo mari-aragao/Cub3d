@@ -1,5 +1,10 @@
 #include "../../include/cub3d.h"
 
+int		get_pixel_texture(t_img *texture, int tex_x, int tex_y);
+{
+
+}
+
 void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc)
 {
 	int i;
@@ -14,7 +19,16 @@ void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc)
 		if (i >= wall->y_end)
 			my_mlx_pixel_put(mlx, wall->x, i, file->dec_floor);
 		if (i < (wall->y_end - wall->y_start))
+		{
+			rc->tex_y = (int)rc->tex_pos;
+			if (rc->tex_y > rc->tex_height - 1)
+				rc->tex_y = rc->tex_height - 1;
+			rc->tex_pos += rc->step;
+			wall->color = get_pixel_texture(rc->texture, rc->tex_x, rc->tex_y);
+			if (rc->side == 1)
+				wall->color = (wall->color >> 1) & 8355711;
 			my_mlx_pixel_put(mlx, wall->x, wall->y_start + i, wall->color);
+		}
 		i++;
 	}
 }
@@ -81,6 +95,7 @@ void	init_rc(t_file *file, t_rayc *rc)
 	rc->hit = 0;
 	rc->move_speed = 5.0 * (3.141592 / 180);
 	rc->rot_speed = 3.0 * (3.141592 / 180);
+	rc->pitch = 100;
 }
 
 void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
@@ -142,30 +157,45 @@ void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
 			rc->perp_wall_dist = (rc->sidedist_x - rc->deltadist_x);
 		else
 			rc->perp_wall_dist = (rc->sidedist_y - rc->deltadist_y);
+
+
 		wall.height = (int)(WIN_HEIGHT / rc->perp_wall_dist);
-		wall.y_start = -wall.height / 2 + WIN_HEIGHT / 2;
+		wall.y_start = -wall.height / 2 + WIN_HEIGHT / 2 + rc->pitch;
 		if (wall.y_start < 0)
 			wall.y_start = 0;
-		wall.y_end = wall.height / 2 + WIN_HEIGHT / 2;
+		wall.y_end = wall.height / 2 + WIN_HEIGHT / 2 + rc->pitch;
 		if (wall.y_end >= WIN_HEIGHT)
 			wall.y_end = WIN_HEIGHT - 1;
+
+			
 		if (rc->side == 0)
 		{
 			if (rc->map_x < (int)rc->pos_x)
-    				wall.color = 16711680; //vermelho norte
+    			rc->texture = &(file->img_txt[NO]);
+				//wall.color = 16711680; //vermelho norte
 			else
-    				wall.color = 8388608; //marrom sul
+				rc->texture = &(file->img_txt[SO]);
+    			//wall.color = 8388608; //marrom sul
 		}
 		if (rc->side == 1)
 		{
 			if (rc->map_y < (int)rc->pos_y)
-				wall.color = 16753920; //laranja oeste
+				rc->texture = &(file->img_txt[WE]);
+				//wall.color = 16753920; //laranja oeste
 			else
-				wall.color = 16766720; //amarelo leste
+				rc->texture = &(file->img_txt[EA]);
+				//wall.color = 16766720; //amarelo leste
 		}
+// adicionei agr
+		if (rc->side == 0)
+			wall.x = rc->pos_y + rc->perp_wall_dist * rc->raydir_y;
+		else
+			wall.x = rc->pos_x + rc->perp_wall_dist * rc->raydir_x;
+
+
+		texture_calc(rc, &wall);
 		draw_wall(mlx, &wall, file, rc);
-	//	printf("mapx = %d && mapy = %d\n", rc->map_x, rc->map_y);
-	//	printf("posx = %f && posy = %f\n", rc->pos_x, rc->pos_y);
+		
 		wall.x++;
 	}
 }
