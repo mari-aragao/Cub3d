@@ -1,8 +1,10 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDTH 680 
-# define WIN_HEIGHT 640
+# define WIN_WIDTH 640 
+# define WIN_HEIGHT 480
+# define TEX_WIDTH 64 
+# define TEX_HEIGHT 64
 # define NO 0
 # define SO 1
 # define WE 2
@@ -91,8 +93,6 @@ typedef struct s_rayc
 
 	int		tex_x;
 	int		tex_y;
-	int		tex_width;
-	int		tex_height;
 	double		tex_pos;
 	int		pitch;
 	double		step;
@@ -101,11 +101,11 @@ typedef struct s_rayc
 
 typedef struct s_draw
 {
-	int	x;
+	double	x;
 	int	height;	
 	int	y_start;
 	int	y_end;
-	int	color;
+	unsigned int	color;
 	
 } t_draw;
 
@@ -172,6 +172,8 @@ int		split_textures(t_file *file);
 int		is_xpm_file(char *path);
 int		set_xpm_img(t_file *file, t_mlx *mlx);
 
+unsigned int    get_pixel_texture(t_img *img, int x, int y);
+void    texture_calc(t_rayc *rc, t_draw *wall);
 // colors
 
 int		get_colors(t_file *file);
