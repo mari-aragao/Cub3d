@@ -21,6 +21,7 @@ SRCS		=	\
  			src/parse/map.c \
  			src/parse/map_temp.c \
 			src/parse/check_map.c \
+			src/parse/check_map2.c \
 			src/raycasting/raycasting.c \
 
 

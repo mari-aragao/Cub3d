@@ -1,8 +1,8 @@
 #include "../../include/cub3d.h"
 
-int check_numbers(int *number)
+int	check_numbers(int *number)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 3)
@@ -14,10 +14,10 @@ int check_numbers(int *number)
 	return (0);
 }
 
-int check_is_digit(char **mat)
+int	check_is_digit(char **mat)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 3)
@@ -34,11 +34,11 @@ int check_is_digit(char **mat)
 	return (0);
 }
 
-int set_colors(char *str, t_file *file, int type)
+int	set_colors(char *str, t_file *file, int type)
 {
-	int	i;
-	int	ret;
-	char **mat;
+	int		i;
+	int		ret;
+	char	**mat;
 
 	ret = 0;
 	mat = ft_split(str, ',');
@@ -59,7 +59,7 @@ int set_colors(char *str, t_file *file, int type)
 	return (0);
 }
 
-int validate_colors(t_file *file)
+int	validate_colors(t_file *file)
 {
 	if (set_colors(file->colors[0], file, 0) > 0)
 	{
@@ -72,7 +72,6 @@ int validate_colors(t_file *file)
 		return (1);
 	}
 	calculate_decimal_color(file);
-	//printf("floor = %d && ceiling = %d\n", file->dec_floor, file->dec_ceiling);
 	if (check_numbers(file->floor) > 0)
 	{
 		write(2, "cub3d: Error: Wrong colors\n", 28);
