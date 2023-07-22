@@ -23,8 +23,8 @@ void	init_map(t_file *file, char **map)
 
 void	cpy_map_to_temp(t_file *file)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (file->map[i])
