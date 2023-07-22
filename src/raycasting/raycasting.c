@@ -88,8 +88,8 @@ void	init_rc(t_file *file, t_rayc *rc)
 	rc->oldplane_x = rc->plane_x;
 	rc->oldplane_y = rc->plane_y;
 	rc->hit = 0;
-	rc->move_speed = 5.0 * (3.141592 / 180);
-	rc->rot_speed = 3.0 * (3.141592 / 180);
+	rc->move_speed = 10.0 * (3.141592 / 180);
+	rc->rot_speed = 6.0 * (3.141592 / 180);
 	rc->pitch = 100;
 	rc->tex_x = 0;
 	rc->tex_y = 0;
@@ -204,7 +204,7 @@ void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
 		}
 	//adicionei agr
 	//continuacao calc texture
-	int	wall_x;
+	double	wall_x;
 		if (rc->side == 0)
 			wall_x = rc->pos_y + rc->perp_wall_dist * rc->raydir_y;
 		else
@@ -219,7 +219,6 @@ void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
 		rc->tex_pos = (wall.y_start - rc->pitch - WIN_HEIGHT / 2
 				+ wall.height / 2) * rc->step;
 		//texture_calc(rc, &wall);
-		printf("y start = %i && wall x = %f, ray tex x = %i && tex pos = %f\n", wall.y_start, wall.x, rc->tex_x, rc->tex_pos);
 		draw_wall(mlx, &wall, file, rc);
 
 		wall.x++;

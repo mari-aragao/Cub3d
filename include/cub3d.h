@@ -1,9 +1,9 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDTH 640 
-# define WIN_HEIGHT 480
-# define TEX_WIDTH 64 
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 960
+# define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 # define NO 0
 # define SO 1
