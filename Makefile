@@ -7,10 +7,12 @@ SRCS		=	\
 			src/raycasting/move_player.c \
 			src/error/error.c \
 			src/utils/utils.c \
+			src/utils/utils2.c \
 			src/utils/converter.c \
 			src/utils/free.c \
 			src/utils/ft_split.c \
 			src/utils/get_next_line.c \
+			src/utils/get_next_line_utils.c \
 			src/parse/read_file.c \
  			src/parse/colors.c \
 			src/parse/check_colors.c \

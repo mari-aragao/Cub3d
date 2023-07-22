@@ -1,19 +1,17 @@
 #include "../../include/cub3d.h"
 
-char *decimal_to_hexa(int *decimal)
+char	*decimal_to_hexa(int *decimal)
 {
-	int	i;
-	int	j;
-	int	quo;
-	int	res;
+	int		i;
+	int		j;
+	int		quo;
+	int		res;
 	char	*hexa;
 
 	hexa = (char *) malloc(sizeof(char) * 7);
-	if (hexa == NULL)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (i < 3)
+	i = -1;
+	j = -1;
+	while (++j, ++i < 3)
 	{
 		quo = decimal[i] / 16;
 		if (quo < 10)
@@ -26,8 +24,6 @@ char *decimal_to_hexa(int *decimal)
 			hexa[j] = res + '0';
 		else
 			hexa[j] = (res - 10) + 'A';
-		j++;
-		i++;
 	}
 	hexa[6] = '\0';
 	return (hexa);
@@ -49,13 +45,11 @@ int	hexa_to_decimal(char *hexa)
 		i++;
 	}
 	return (decimal);
-	
-
 }
 
 void	calculate_decimal_color(t_file *file)
 {
-	char *hexa_color;
+	char	*hexa_color;
 
 	hexa_color = decimal_to_hexa(file->ceiling);
 	file->dec_ceiling = hexa_to_decimal(hexa_color);

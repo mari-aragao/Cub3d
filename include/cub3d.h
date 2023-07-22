@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define BUFFER_SIZE 1
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 960
 # define TEX_WIDTH 64
@@ -153,6 +154,8 @@ void	get_free(char **mat);
 void	free_all(t_file *file);
 
 char	*get_next_line(int fd);
+int		ft_strchr_mod(char *s);
+char	*ft_strjoin(char *s1, char *s2);
 
 void	calculate_decimal_color(t_file *file);
 char	*decimal_to_hexa(int *decimal);

@@ -2,7 +2,7 @@
 
 void	get_free(char **mat)
 {
-	int i; 
+	int	i; 
 
 	if (!mat)
 		return ;
