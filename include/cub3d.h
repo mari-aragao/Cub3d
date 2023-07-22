@@ -216,8 +216,14 @@ void	render_game(t_mlx *mlx, t_file *file, t_rayc *rc);
 void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc);
 void	init_rc(t_file *file, t_rayc *rc);
 void	set_initial_pos(t_file *file, t_rayc *rc);
+void	check_direction(t_rayc *rc, char dir, int x, int y);
 
 //move_player
 int		is_wall(t_file *file, int x, int y);
+void    move_w_and_s(int key, t_file *file, t_rayc *rc);
+void    move_a_and_d(int key, t_file *file, t_rayc *rc);
+void    rotate_left(int key, t_rayc *rc);
+void    rotate_right(int key, t_rayc *rc);
 int		move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx);
+
 #endif

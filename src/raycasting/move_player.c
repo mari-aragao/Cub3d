@@ -7,54 +7,56 @@ int	is_wall(t_file *file, int x, int y)
 	return (0);
 }
 
-int	move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx)
+void	move_w_and_s(int key, t_file *file, t_rayc *rc)
 {
-	if (key == 119) // w
+	if (key == 119)
 	{
-		if (is_wall (file, (int)(rc->pos_x + rc->dir_x * rc->move_speed), (int)rc->pos_y) == 0)
+		if (is_wall (file, (int)(rc->pos_x + rc->dir_x
+				* rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x += rc->dir_x * rc->move_speed;
-		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y + rc->dir_y * rc->move_speed)) == 0)
+		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y
+				+ rc->dir_y * rc->move_speed)) == 0)
 			rc->pos_y += rc->dir_y * rc->move_speed;
 	}
-	else if (key == 115) //s
+	else if (key == 115)
 	{
-		if (is_wall(file, (int)(rc->pos_x - rc->dir_x * rc->move_speed), (int)rc->pos_y) == 0)
+		if (is_wall(file, (int)(rc->pos_x - rc->dir_x
+				* rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x -= rc->dir_x * rc->move_speed;
-		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y - rc->dir_y * rc->move_speed)) == 0)
+		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y
+				- rc->dir_y * rc->move_speed)) == 0)
 			rc->pos_y -= rc->dir_y * rc->move_speed;
 	}
-	else if (key == 97) //a
+}
+
+void	move_a_and_d(int key, t_file *file, t_rayc *rc)
+{
+	if (key == 97)
 	{
-		if (is_wall(file, (int)(rc->pos_x - rc->plane_x * rc->move_speed), (int)rc->pos_y) == 0)
+		if (is_wall(file, (int)(rc->pos_x - rc->plane_x
+				* rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x -= rc->plane_x * rc->move_speed;
-		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y - rc->plane_y * rc->move_speed)) == 0)
+		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y
+				- rc->plane_y * rc->move_speed)) == 0)
 			rc->pos_y -= rc->plane_y * rc->move_speed;
 	}
-	else if (key == 100) //d
+	else if (key == 100)
 	{
-		if (file->map[(int)(rc->pos_x + rc->plane_x * rc->move_speed)][(int)rc->pos_y] != 0)
+		if (file->map[(int)(rc->pos_x + rc->plane_x
+				* rc->move_speed)][(int)rc->pos_y] != 0)
 			rc->pos_x += rc->plane_x * rc->move_speed;
-		if (file->map[(int)rc->pos_x][(int)(rc->pos_y + rc->plane_y * rc->move_speed)] != 0)
+		if (file->map[(int)rc->pos_x][(int)(rc->pos_y
+			+ rc->plane_y * rc->move_speed)] != 0)
 			rc->pos_y += rc->plane_y * rc->move_speed;
 	}
-	else if (key == 65361) // >
-	{
-		rc->olddir_x = rc->dir_x;
-		rc->dir_x = rc->dir_x * cosf(rc->rot_speed) - rc->dir_y * sinf(rc->rot_speed);
-		rc->dir_y = rc->olddir_x * sinf(rc->rot_speed) + rc->dir_y * cosf(rc->rot_speed);
-		rc->oldplane_x = rc->plane_x;
-		rc->plane_x = rc->plane_x * cosf(rc->rot_speed) - rc->plane_y * sinf(rc->rot_speed);
-		rc->plane_y = rc->oldplane_x * sinf(rc->rot_speed) + rc->plane_y * cosf(rc->rot_speed);
-	}
-	else if (key == 65363) // <
-	{
-		rc->olddir_x = rc->dir_x;
-		rc->dir_x = rc->dir_x * cos(-rc->rot_speed) - rc->dir_y * sin(-rc->rot_speed);
-		rc->dir_y = rc->olddir_x * sin(-rc->rot_speed) + rc->dir_y * cos(-rc->rot_speed);
-		rc->oldplane_x = rc->plane_x;
-		rc->plane_x = rc->plane_x * cos(-rc->rot_speed) - rc->plane_y * sin(-rc->rot_speed);
-		rc->plane_y = rc->oldplane_x * sin(-rc->rot_speed) + rc->plane_y * cos(-rc->rot_speed);
-	}
+}
+
+int	move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx)
+{
+	move_w_and_s(key, file, rc);
+	move_a_and_d(key, file, rc);
+	rotate_left(key, rc);
+	rotate_right(key, rc);
 	mlx_destroy_image(mlx->mlx, mlx->img);
 	render_game(mlx, file, rc);
 	return (0);

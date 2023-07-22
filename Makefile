@@ -4,7 +4,6 @@ SRCS		=	\
 			src/main.c \
 			src/mlx_func.c \
 			src/mlx_func2.c \
-			src/raycasting/move_player.c \
 			src/error/error.c \
 			src/utils/utils.c \
 			src/utils/utils2.c \
@@ -23,6 +22,9 @@ SRCS		=	\
 			src/parse/check_map.c \
 			src/parse/check_map2.c \
 			src/raycasting/raycasting.c \
+			src/raycasting/init_rayc_vars.c \
+			src/raycasting/move_player.c \
+			src/raycasting/rotate_player.c \
 
 
 OBJS		= $(SRCS:.c=.o)

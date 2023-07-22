@@ -5,8 +5,6 @@ void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc)
 	int i;
 
 	i = 0;
-	(void) file;
-	(void) rc;
 	while (i < WIN_HEIGHT - 1)
 	{
 		if (i < wall->y_start)
@@ -26,76 +24,6 @@ void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc)
 		}
 		i++;
 	}
-}
-
-void	set_initial_pos(t_file *file, t_rayc *rc)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < file->width)
-	{
-		y = 0;
-		while (y < file->height)
-		{
-			if (is_valid_char(file->map[x][y]) == 2)
-			{
-				rc->pos_x = (double)x;
-				rc->pos_y = (double)y;
-				if (file->map[x][y] == 'N')
-				{
-					rc->dir_x = -1.0;
-					rc->dir_y = 0.0;
-					rc->plane_x = 0.0;
-					rc->plane_y = 0.66;
-				}
-				if (file->map[x][y] == 'S')
-				{
-					rc->dir_x = 1.0;
-					rc->dir_y = 0.0;
-					rc->plane_x = 0.0;
-					rc->plane_y = -0.66;
-				}
-				if (file->map[x][y] == 'W')
-				{
-					rc->dir_x = 0.0;
-					rc->dir_y = -1.0;
-					rc->plane_x = -0.66;
-					rc->plane_y = 0.0;
-				}
-				if (file->map[x][y] == 'E')
-				{
-					rc->dir_x = 0.0;
-					rc->dir_y = 1.0;
-					rc->plane_x = 0.66;
-					rc->plane_y = 0.0;
-				}
-				file->map[x][y] = '0';
-				return ;
-			}
-			y++;
-		}
-		x++; 
-	}
-}
-
-void	init_rc(t_file *file, t_rayc *rc)
-{
-	set_initial_pos(file, rc);	
-	rc->olddir_x = rc->dir_x;
-	rc->olddir_y = rc->dir_y;
-	rc->oldplane_x = rc->plane_x;
-	rc->oldplane_y = rc->plane_y;
-	rc->hit = 0;
-	rc->move_speed = 10.0 * (3.141592 / 180);
-	rc->rot_speed = 6.0 * (3.141592 / 180);
-	rc->pitch = 100;
-	rc->tex_x = 0;
-	rc->tex_y = 0;
-	rc->tex_pos = 0;
-	rc->step = 0;
-
 }
 
 void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc)
