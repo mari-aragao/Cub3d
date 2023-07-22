@@ -48,7 +48,6 @@ int	set_xpm_img(t_file *file, t_mlx *mlx)
 		file->img_txt[i].img = mlx_xpm_file_to_image(mlx->mlx, file->textures[i], &file->img_txt[i].width, &file->img_txt[i].height);
 		if (file->img_txt[i].img == NULL)
 			return (1);
-		//file->img_txt[i].addr = mlx_get_data_addr(file->img_txt[i].img, &file->img_txt[i].bpp, &file->img_txt[i].line_lenght, &file->img_txt[i].endian);
 		my_mlx_get_addr(&file->img_txt[i]);
 		i++;
 	}

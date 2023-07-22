@@ -129,6 +129,7 @@ void	my_mlx_get_addr(t_img *img);
 
 //Error
 
+int		start_validation(int argc, char **argv, t_file *file);
 int		check_argc(int argc);
 int		check_path(char *path);
 int		check_elements(t_file *file);
@@ -213,4 +214,7 @@ void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc);
 void	init_rc(t_file *file, t_rayc *rc);
 void	set_initial_pos(t_file *file, t_rayc *rc);
 
+//move_player
+int		is_wall(t_file *file, int x, int y);
+int		move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx);
 #endif

@@ -2,7 +2,9 @@ NAME 		= cub3d
 
 SRCS		=	\
 			src/main.c \
-			src/mlx_functions.c \
+			src/mlx_func.c \
+			src/mlx_func2.c \
+			src/raycasting/move_player.c \
 			src/error/error.c \
 			src/utils/utils.c \
 			src/utils/converter.c \
