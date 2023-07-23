@@ -60,22 +60,21 @@ typedef struct s_mlx
 
 typedef struct s_rayc
 {
+	int		x;
+	int		y;
 	double	pos_x;	
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-
 	double	olddir_x;
 	double	olddir_y;
 	double	oldplane_x;
 	double	oldplane_y;
-
 	double	cam_x;	
 	double	raydir_x;
 	double	raydir_y;
-
 	int		map_x;	
 	int		map_y;
 	double	sidedist_x;
@@ -87,11 +86,9 @@ typedef struct s_rayc
 	int		step_y; 
 	int		hit;
 	int		side;
-
 	double	move_speed;
 	double	rot_speed;
 	t_img	*texture;
-
 	int		tex_x;
 	int		tex_y;
 	double		tex_pos;
@@ -121,7 +118,6 @@ typedef struct s_all
 int	init_elements(t_file *file);
 void	init_mlx(t_mlx *mlx);
 void	init_image(t_mlx *mlx);
-//void	set_hook(t_mlx *mlx, t_file *file, t_rayc *rc);
 int	exit_hook(t_mlx *mlx);
 int	is_wall(t_file *file, int x, int y);
 int	key_hook(int key, void *param);
@@ -218,6 +214,7 @@ void	init_rc(t_file *file, t_rayc *rc);
 void	set_initial_pos(t_file *file, t_rayc *rc);
 void	check_direction(t_rayc *rc, char dir, int x, int y);
 
+
 //move_player
 int		is_wall(t_file *file, int x, int y);
 void    move_w_and_s(int key, t_file *file, t_rayc *rc);
@@ -225,5 +222,10 @@ void    move_a_and_d(int key, t_file *file, t_rayc *rc);
 void    rotate_left(int key, t_rayc *rc);
 void    rotate_right(int key, t_rayc *rc);
 int		move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx);
+void    set_texture(t_rayc *rc, t_file *file);
+void    calc_texture_pixel(t_file *file, t_rayc *rc, t_draw *wall);
+void    calc_side_dist(t_rayc *rc);
+void    dda(t_rayc *rc, t_file *file);
+
 
 #endif

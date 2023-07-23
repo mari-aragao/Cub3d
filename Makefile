@@ -21,7 +21,8 @@ SRCS		=	\
  			src/parse/map_temp.c \
 			src/parse/check_map.c \
 			src/parse/check_map2.c \
-			src/raycasting/raycasting.c \
+			src/raycasting/rayc.c \
+			src/raycasting/rayc2.c \
 			src/raycasting/init_rayc_vars.c \
 			src/raycasting/move_player.c \
 			src/raycasting/rotate_player.c \
