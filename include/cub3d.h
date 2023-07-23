@@ -11,7 +11,6 @@
 # define WE 2
 # define EA 3
 # define PI 3.141592653
-
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
@@ -19,16 +18,16 @@
 # include <stdio.h>
 # include <math.h>
 
-typedef struct	s_img
+typedef struct s_img
 {
-	int	height;
-	int	width;
+	int		height;
+	int		width;
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_lenght;
 	int		endian;
-} t_img;
+}				t_img;
 
 typedef struct s_file
 {
@@ -45,7 +44,7 @@ typedef struct s_file
 	char	**map_temp;
 	int		height;
 	int		width;
-} t_file;
+}				t_file;
 
 typedef struct s_mlx
 {
@@ -56,7 +55,7 @@ typedef struct s_mlx
 	int		bpp;
 	int		line_lenght;
 	int		endian;
-} t_mlx;
+}				t_mlx;
 
 typedef struct s_rayc
 {
@@ -91,141 +90,130 @@ typedef struct s_rayc
 	t_img	*texture;
 	int		tex_x;
 	int		tex_y;
-	double		tex_pos;
+	double	tex_pos;
 	int		pitch;
-	double		step;
-
-} t_rayc;
+	double	step;
+}				t_rayc;
 
 typedef struct s_draw
 {
-	double	x;
-	int	height;	
-	int	y_start;
-	int	y_end;
+	double			x;
+	int				height;	
+	int				y_start;
+	int				y_end;
 	unsigned int	color;
-	
-} t_draw;
+
+}				t_draw;
 
 typedef struct s_all
 {
 	t_mlx	*mlx;
 	t_file	*file;
 	t_rayc	*rc;
-} t_all;
+}				t_all;
 
 // mlx_functions
-int	init_elements(t_file *file);
-void	init_mlx(t_mlx *mlx);
-void	init_image(t_mlx *mlx);
-int	exit_hook(t_mlx *mlx);
-int	is_wall(t_file *file, int x, int y);
-int	key_hook(int key, void *param);
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-void	my_mlx_get_addr(t_img *img);
+int				init_elements(t_file *file);
+void			init_mlx(t_mlx *mlx);
+void			init_image(t_mlx *mlx);
+int				exit_hook(t_mlx *mlx);
+int				is_wall(t_file *file, int x, int y);
+int				key_hook(int key, void *param);
+void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void			my_mlx_get_addr(t_img *img);
 
 //Error
 
-int		start_validation(int argc, char **argv, t_file *file);
-int		check_argc(int argc);
-int		check_path(char *path);
-int		check_elements(t_file *file);
-int		check_empty_file(t_file *file, char *path, int fd);
+int				start_validation(int argc, char **argv, t_file *file);
+int				check_argc(int argc);
+int				check_path(char *path);
+int				check_elements(t_file *file);
+int				check_empty_file(t_file *file, char *path, int fd);
 
 // Utils
-int		ft_isdigit(int c);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_strlen(char *s);
-char	*ft_strnstr(char *s1, char *s2, int n);
-int	ft_atoi(const char *str);
-char	*cpy_no_endl(char *s1);
-int	count_mat_size(char **mat);
-char	*ft_strdup(char *s);
-char	*strdup_mod(char *s, int n);
-void	print_mat(char **mat);
-
-char	**ft_split(char *s, char c);
-
-void	get_free(char **mat);
-void	free_all(t_file *file);
-
-char	*get_next_line(int fd);
-int		ft_strchr_mod(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-
-void	calculate_decimal_color(t_file *file);
-char	*decimal_to_hexa(int *decimal);
-int	hexa_to_decimal(char *hexa);
+int				ft_isdigit(int c);
+int				ft_strcmp(char *s1, char *s2);
+int				ft_strlen(char *s);
+char			*ft_strnstr(char *s1, char *s2, int n);
+int				ft_atoi(const char *str);
+char			*cpy_no_endl(char *s1);
+int				count_mat_size(char **mat);
+char			*ft_strdup(char *s);
+char			*strdup_mod(char *s, int n);
+void			print_mat(char **mat);
+char			**ft_split(char *s, char c);
+void			get_free(char **mat);
+void			free_all(t_file *file);
+char			*get_next_line(int fd);
+int				ft_strchr_mod(char *s);
+char			*ft_strjoin(char *s1, char *s2);
+void			calculate_decimal_color(t_file *file);
+char			*decimal_to_hexa(int *decimal);
+int				hexa_to_decimal(char *hexa);
 
 // Read file
 
-int		count_file_lines(char *path);
-void	remove_file_endl(t_file *file);
-int		read_file(char *path, t_file *file);
+int				count_file_lines(char *path);
+void			remove_file_endl(t_file *file);
+int				read_file(char *path, t_file *file);
 
 // textures
+int				get_textures(t_file *file);
+int				is_texture(char *str);
+int				check_textures(char **mat);
+int				split_textures(t_file *file);
+int				is_xpm_file(char *path);
+int				set_xpm_img(t_file *file, t_mlx *mlx);
+unsigned int	get_pixel_texture(t_img *img, int x, int y);
+void			texture_calc(t_rayc *rc, t_draw *wall);
 
-int		get_textures(t_file *file);
-int		is_texture(char *str);
-int		check_textures(char **mat);
-int		split_textures(t_file *file);
-int		is_xpm_file(char *path);
-int		set_xpm_img(t_file *file, t_mlx *mlx);
-
-unsigned int    get_pixel_texture(t_img *img, int x, int y);
-void    texture_calc(t_rayc *rc, t_draw *wall);
 // colors
-
-int		get_colors(t_file *file);
-int		is_colors(char *str);
-int		check_colors(char **mat);
-int		split_colors(t_file *file);
-int	validate_colors(t_file *file);
-int	set_colors(char *str, t_file *file, int type);
-int	check_is_digit(char **mat);
-int	check_numbers(int *number);
+int				get_colors(t_file *file);
+int				is_colors(char *str);
+int				check_colors(char **mat);
+int				split_colors(t_file *file);
+int				validate_colors(t_file *file);
+int				set_colors(char *str, t_file *file, int type);
+int				check_is_digit(char **mat);
+int				check_numbers(int *number);
 
 // map
-
-int	is_element(char *str);
-void	get_map(t_file *file);
-void	remap(t_file *file);
+int				is_element(char *str);
+void			get_map(t_file *file);
+void			remap(t_file *file);
 
 // map_temp
-void	set_map_temp(t_file *file);
-void	init_map(t_file *file, char **map);
-void	cpy_map_to_temp(t_file *file);
-
+void			set_map_temp(t_file *file);
+void			init_map(t_file *file, char **map);
+void			cpy_map_to_temp(t_file *file);
 
 // validate map
-int validate_map(t_file *file);
-int	count_map_width(char **mat);
-int	is_valid_char(char c);
-int	check_player(t_file *file);
-int	check_spaces(t_file *file);
-int	check_around_spaces(char **map, int i, int j);
-int	check_around_player(char **map, int i, int j);
+int				validate_map(t_file *file);
+int				count_map_width(char **mat);
+int				is_valid_char(char c);
+int				check_player(t_file *file);
+int				check_spaces(t_file *file);
+int				check_around_spaces(char **map, int i, int j);
+int				check_around_player(char **map, int i, int j);
 
 //raycasting
-void	raycasting(t_file *file, t_mlx *mlx, t_rayc *rc);
-void	render_game(t_mlx *mlx, t_file *file, t_rayc *rc);
-void	draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc);
-void	init_rc(t_file *file, t_rayc *rc);
-void	set_initial_pos(t_file *file, t_rayc *rc);
-void	check_direction(t_rayc *rc, char dir, int x, int y);
-
+void			raycasting(t_file *file, t_mlx *mlx, t_rayc *rc);
+void			render_game(t_mlx *mlx, t_file *file, t_rayc *rc);
+void			draw_wall(t_mlx *mlx, t_draw *wall, t_file *file, t_rayc *rc);
+void			init_rc(t_file *file, t_rayc *rc);
+void			set_initial_pos(t_file *file, t_rayc *rc);
+void			check_direction(t_rayc *rc, char dir, int x, int y);
 
 //move_player
-int		is_wall(t_file *file, int x, int y);
-void    move_w_and_s(int key, t_file *file, t_rayc *rc);
-void    move_a_and_d(int key, t_file *file, t_rayc *rc);
-void    rotate_left(int key, t_rayc *rc);
-void    rotate_right(int key, t_rayc *rc);
-int		move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx);
-void    set_texture(t_rayc *rc, t_file *file);
-void    calc_texture_pixel(t_file *file, t_rayc *rc, t_draw *wall);
-void    calc_side_dist(t_rayc *rc);
-void    dda(t_rayc *rc, t_file *file);
-
+int				is_wall(t_file *file, int x, int y);
+void			move_w_and_s(int key, t_file *file, t_rayc *rc);
+void			move_a_and_d(int key, t_file *file, t_rayc *rc);
+void			rotate_left(int key, t_rayc *rc);
+void			rotate_right(int key, t_rayc *rc);
+int				move_player(int key, t_file *file, t_rayc *rc, t_mlx *mlx);
+void			set_texture(t_rayc *rc, t_file *file);
+void			calc_texture_pixel(t_file *file, t_rayc *rc, t_draw *wall);
+void			calc_side_dist(t_rayc *rc);
+void			dda(t_rayc *rc, t_file *file);
 
 #endif
