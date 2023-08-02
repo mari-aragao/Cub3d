@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/02 17:54:12 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/02 17:58:06 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	count_map_width(char **mat)
@@ -6,7 +18,7 @@ int	count_map_width(char **mat)
 	int	count;
 
 	i = 1;
-	count = ft_strlen(mat[0]); 
+	count = ft_strlen(mat[0]);
 	while (mat[i] != NULL)
 	{
 		if (ft_strlen(mat[i]) > count)
@@ -93,7 +105,5 @@ int	validate_map(t_file *file)
 	get_free(file->map_temp);
 	file->width -= 4;
 	file->height -= 4;
-	if (check_empty_line_map(file) != 0)
-		return (1);
 	return (0);
 }

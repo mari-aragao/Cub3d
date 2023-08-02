@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/02 18:01:48 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/02 18:01:57 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -11,7 +23,7 @@
 # define WE 2
 # define EA 3
 # define PI 3.141592653
-# include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -42,7 +54,6 @@ typedef struct s_file
 	int		dec_floor;
 	char	**map;
 	char	**map_temp;
-	int		map_size;
 	int		height;
 	int		width;
 }				t_file;
@@ -177,11 +188,11 @@ int				validate_colors(t_file *file);
 int				set_colors(char *str, t_file *file, int type);
 int				check_is_digit(char **mat);
 int				check_numbers(int *number);
+int				check_comma(char *str);
 
 // map
 int				is_element(char *str);
 void			get_map(t_file *file);
-void			remap(t_file *file);
 
 // map_temp
 void			set_map_temp(t_file *file);
@@ -196,7 +207,6 @@ int				check_player(t_file *file);
 int				check_spaces(t_file *file);
 int				check_around_spaces(char **map, int i, int j);
 int				check_around_player(char **map, int i, int j);
-int				check_empty_line_map(t_file *file);
 
 //raycasting
 void			raycasting(t_file *file, t_mlx *mlx, t_rayc *rc);

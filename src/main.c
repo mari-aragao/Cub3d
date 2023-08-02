@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/02 17:53:09 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/02 17:53:12 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 int	init_elements(t_file *file)
@@ -35,7 +47,7 @@ int	main(int argc, char **argv)
 
 	if (start_validation(argc, argv, &file) != 0)
 		return (1);
-	init_rc(&file, &rc); 
+	init_rc(&file, &rc);
 	init_mlx(&mlx);
 	if (set_xpm_img(&file, &mlx) == 1)
 	{

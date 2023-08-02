@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/02 17:54:26 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/02 17:54:31 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	is_element(char *str)
@@ -10,31 +22,6 @@ int	is_element(char *str)
 			|| ft_strnstr(str, "C ", ft_strlen(str)) != NULL)
 		return (0);
 	return (1);
-}
-
-void	remap(t_file *file)
-{
-	int		i;
-	int		j;
-	char	**remap;
-
-	remap = (char **) malloc(sizeof(char *) * (file->height + 1));
-	if (remap == NULL)
-		return ;
-	init_map(file, remap);
-	i = 0;
-	while (file->map[i])
-	{
-		j = 0;
-		while (j < ft_strlen(file->map[i]))
-		{
-			remap[i][j] = file->map[i][j];
-			j++;
-		}
-		i++;
-	}
-	get_free(file->map);
-	file->map = remap;
 }
 
 void	get_map(t_file *file)
@@ -57,7 +44,6 @@ void	get_map(t_file *file)
 		}
 	}
 	file->height = file->file_lines - i;
-	file->map_size = file->file_lines - i;
 	file->map = (char **) malloc(sizeof(char *) * (file->height + 1));
 	j = -1;
 	while (++j < file->height)

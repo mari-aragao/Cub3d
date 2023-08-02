@@ -34,20 +34,16 @@ CFLAGS		= -Wall -Wextra -Werror -g
 
 UNAME		= $(shell uname)
 
-ifeq ($(UNAME), Linux)
-	OFLAGS		= $(CFLAGS) -L ./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-	MLX			= ./mlx_linux
-else
-	OFLAGS		= $(CFLAGS) -L ./mlx -l mlx -framework OpenGl -framework Appkit
-	MLX			= ./mlx
-endif
+OFLAGS		= $(CFLAGS) -L ./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+MLX			= ./mlx_linux
 
 .c.o:
 			@cc $(CFLAGS) -c $< -o $(<:.c=.o) -I ./includes
 
 $(NAME):	$(OBJS)
 				@make -C $(MLX)
-				cc $(OBJS) $(OFLAGS) -o $(NAME)
+				@cc $(OBJS) $(OFLAGS) -o $(NAME)
 
 all:		$(NAME)
 

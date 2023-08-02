@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/02 17:54:54 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/02 17:55:01 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	count_file_lines(char *path)
@@ -71,6 +83,5 @@ int	read_file(char *path, t_file *file)
 	get_map(file);
 	if (validate_map(file) > 0)
 		return (1);
-	remap(file);
 	return (0);
 }

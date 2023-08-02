@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_colors.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/02 17:53:48 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/02 17:53:57 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	check_numbers(int *number)
@@ -34,6 +46,23 @@ int	check_is_digit(char **mat)
 	return (0);
 }
 
+int	check_comma(char *str)
+{
+	int	i;
+	int	comma;
+
+	i = 0;
+	comma = 0;
+	while (str[i++])
+	{
+		if (str[i] == ',')
+			comma++;
+	}
+	if (comma != 2)
+		return (1);
+	return (0);
+}
+
 int	set_colors(char *str, t_file *file, int type)
 {
 	int		i;
@@ -42,6 +71,8 @@ int	set_colors(char *str, t_file *file, int type)
 
 	ret = 0;
 	mat = ft_split(str, ',');
+	if (check_comma(str) != 0)
+		return (1);
 	if (count_mat_size(mat) != 3)
 		ret = 1;
 	if (ret == 0 && check_is_digit(mat) > 0)

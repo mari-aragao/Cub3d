@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:47:53 by maragao           #+#    #+#             */
-/*   Updated: 2023/07/08 17:15:02 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/02 17:58:29 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,17 @@ static char	*read_line(int fd, char *bank)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*bank;
+	char	*line;
+	char	*bank;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	bank = NULL;
 	bank = read_line(fd, bank);
 	if (!bank)
 		return (NULL);
 	line = return_line(bank);
 	bank = last_static(bank);
+	free(bank);
 	return (line);
 }
