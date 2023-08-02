@@ -42,6 +42,7 @@ typedef struct s_file
 	int		dec_floor;
 	char	**map;
 	char	**map_temp;
+	int		map_size;
 	int		height;
 	int		width;
 }				t_file;
@@ -195,6 +196,7 @@ int				check_player(t_file *file);
 int				check_spaces(t_file *file);
 int				check_around_spaces(char **map, int i, int j);
 int				check_around_player(char **map, int i, int j);
+int				check_empty_line_map(t_file *file);
 
 //raycasting
 void			raycasting(t_file *file, t_mlx *mlx, t_rayc *rc);

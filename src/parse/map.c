@@ -57,6 +57,7 @@ void	get_map(t_file *file)
 		}
 	}
 	file->height = file->file_lines - i;
+	file->map_size = file->file_lines - i;
 	file->map = (char **) malloc(sizeof(char *) * (file->height + 1));
 	j = -1;
 	while (++j < file->height)

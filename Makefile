@@ -46,7 +46,7 @@ endif
 			@cc $(CFLAGS) -c $< -o $(<:.c=.o) -I ./includes
 
 $(NAME):	$(OBJS)
-				@make -C $(MLX) &> /dev/null
+				@make -C $(MLX)
 				cc $(OBJS) $(OFLAGS) -o $(NAME)
 
 all:		$(NAME)

@@ -93,5 +93,7 @@ int	validate_map(t_file *file)
 	get_free(file->map_temp);
 	file->width -= 4;
 	file->height -= 4;
+	if (check_empty_line_map(file) != 0)
+		return (1);
 	return (0);
 }

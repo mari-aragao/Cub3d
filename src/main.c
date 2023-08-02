@@ -22,6 +22,7 @@ int	init_elements(t_file *file)
 		file->colors[i] = NULL;
 		i++;
 	}
+	file->map = NULL;
 	return (0);
 }
 
