@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:01:48 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 18:01:57 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/02 18:13:50 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_rayc
 	double	deltadist_y;
 	double	perp_wall_dist;
 	int		step_x;	
-	int		step_y; 
+	int		step_y;
 	int		hit;
 	int		side;
 	double	move_speed;

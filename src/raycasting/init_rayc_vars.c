@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:55:30 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 17:55:31 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 16:11:16 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	set_initial_pos(t_file *file, t_rayc *rc)
 	while (++x < file->width)
 	{
 		y = -1;
-		while (++y < file->height)
+		while (file->map[x][++y])
 		{
 			if (is_valid_char(file->map[x][y]) == 2)
 			{

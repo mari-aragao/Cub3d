@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:53:22 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 17:53:23 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 16:26:47 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	start_validation(int argc, char **argv, t_file *file)
 {
-	if (check_argc(argc) == 1)
+	if (check_argc(argc) != 0)
 		return (1);
 	if (check_path(argv[1]) == 1)
 		return (1);
@@ -48,7 +48,7 @@ int	check_path(char *path)
 	i = ft_strlen(path) - 1;
 	while (path[i] != '.' && i > 0)
 		i--;
-	if (ft_strcmp(&path[i], ".cub") == 0)
+	if (ft_strcmp(&path[i], ".cub") == 0 && open(path, O_RDONLY) != -1)
 		return (0);
 	write(2, "Error: Invalid path\n", 21);
 	return (1);

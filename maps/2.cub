@@ -1,11 +1,10 @@
-SO ./textures/wall_2.xpm
-WE ./textures/wall_3.xpm
-NO         ./textures/wall_1.xpm
-EA ./textures/wall_4.xpm
+NO ./textures/1.xpm
+SO ./textures/2.xpm
+WE ./textures/3.xpm
+EA ./textures/4.xpm
 
 F 28,116,71
 C 34,113,179
-
 
 1111111111111111111
 1110000000100000001
