@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:56:50 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/03 17:07:34 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 19:54:43 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_free(char **mat)
 {
 	int	i;
 
-	if (!mat)
+	if (!mat || mat == NULL)
 		return ;
 	i = 0;
 	while (mat[i])

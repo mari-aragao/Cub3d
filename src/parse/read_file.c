@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:54:54 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/03 19:35:07 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 20:02:40 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ int	read_file(char *path, t_file *file)
 
 	i = 0;
 	fd = open(path, O_RDONLY);
-	if (check_empty_file(file, path, fd) > 0)
-		return (1);
 	file->file = (char **) malloc(sizeof(char *) * (file->file_lines + 1));
 	while (i < file->file_lines)
 	{

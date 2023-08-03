@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:53:22 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/03 16:26:47 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 20:02:58 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 int	start_validation(int argc, char **argv, t_file *file)
 {
+	int	fd;
+
 	if (check_argc(argc) != 0)
 		return (1);
 	if (check_path(argv[1]) == 1)
+		return (1);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (1);
+	if (check_empty_file(file, argv[1], fd) != 0)
 		return (1);
 	if (read_file(argv[1], file) > 0)
 	{
