@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:01:48 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 18:13:50 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:21:40 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct s_all
 int				init_elements(t_file *file);
 void			init_mlx(t_mlx *mlx);
 void			init_image(t_mlx *mlx);
-int				exit_hook(t_mlx *mlx);
+int				exit_hook(t_all *all);
 int				is_wall(t_file *file, int x, int y);
 int				key_hook(int key, void *param);
 void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);

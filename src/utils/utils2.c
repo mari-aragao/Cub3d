@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:57:25 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 17:57:26 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:11:47 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_strdup(char *s)
 	int		len;
 	char	*ptr;
 
-	if (!s)
+	if (!s || s == NULL)
 		return (NULL);
 	len = 0;
 	while (s[len])
@@ -60,7 +60,7 @@ char	*ft_strdup(char *s)
 		ptr[i] = s[i];
 		i++;
 	}
-	ptr[i] = 0;
+	ptr[i] = '\0';
 	return (ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:53:36 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 17:53:37 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:21:12 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	init_image(t_mlx *mlx)
 			&mlx->line_lenght, &mlx->endian);
 }
 
-int	exit_hook(t_mlx *mlx)
+int	exit_hook(t_all *all)
 {
-	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_window(all->mlx->mlx, all->mlx->win);
+	free_all(all->file);
 	exit(0);
 }
 
@@ -43,7 +44,7 @@ int	key_hook(int key, void *param)
 
 	all = (t_all *)param;
 	if (key == 65307)
-		exit_hook(all->mlx);
+		exit_hook(all);
 	move_player(key, all->file, all->rc, all->mlx);
 	return (0);
 }
