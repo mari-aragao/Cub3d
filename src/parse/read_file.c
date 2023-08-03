@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:54:54 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 17:55:01 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 19:35:07 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int	read_file(char *path, t_file *file)
 	init_elements(file);
 	if (valid_file(file) != 0)
 		return (1);
-	get_map(file);
+	if (get_map(file) != 0)
+		return (write(2, "Error: invalid map\n", 20));
 	if (validate_map(file) > 0)
 		return (1);
 	return (0);

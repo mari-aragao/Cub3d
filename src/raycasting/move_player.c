@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:55:35 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 17:55:36 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 19:38:24 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	move_w_and_s(int key, t_file *file, t_rayc *rc)
 {
 	if (key == 119)
 	{
-		if (is_wall (file, (int)(rc->pos_x + rc->dir_x
+		if (is_wall(file, (int)(rc->pos_x + rc->dir_x
 				* rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x += rc->dir_x * rc->move_speed;
 		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y
@@ -54,11 +54,11 @@ void	move_a_and_d(int key, t_file *file, t_rayc *rc)
 	}
 	else if (key == 100)
 	{
-		if (file->map[(int)(rc->pos_x + rc->plane_x
-				* rc->move_speed)][(int)rc->pos_y] != 0)
+		if (is_wall(file, (int)(rc->pos_x + rc->plane_x
+				* rc->move_speed), (int)rc->pos_y) == 0)
 			rc->pos_x += rc->plane_x * rc->move_speed;
-		if (file->map[(int)rc->pos_x][(int)(rc->pos_y
-			+ rc->plane_y * rc->move_speed)] != 0)
+		if (is_wall(file, (int)rc->pos_x, (int)(rc->pos_y
+				+ rc->plane_y * rc->move_speed)) == 0)
 			rc->pos_y += rc->plane_y * rc->move_speed;
 	}
 }

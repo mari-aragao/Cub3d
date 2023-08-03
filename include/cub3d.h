@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:01:48 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/03 17:21:40 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 19:38:48 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ int				check_comma(char *str);
 
 // map
 int				is_element(char *str);
-void			get_map(t_file *file);
+int				get_map(t_file *file);
 
 // map_temp
 void			set_map_temp(t_file *file);

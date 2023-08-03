@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:53:09 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/02 17:53:12 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 19:10:39 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	all.mlx = &mlx;
 	all.file = &file;
 	all.rc = &rc;
-	mlx_hook(mlx.win, 17, 0, exit_hook, &mlx);
+	mlx_hook(mlx.win, 17, 0, exit_hook, &all);
 	mlx_hook(mlx.win, 2, 1L << 0, key_hook, &all);
 	render_game(&mlx, &file, &rc);
 	mlx_loop(mlx.mlx);
