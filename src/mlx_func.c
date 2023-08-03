@@ -6,7 +6,7 @@
 /*   By: maragao <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:53:36 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/03 17:21:12 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/03 18:45:47 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,21 @@ void	init_image(t_mlx *mlx)
 
 int	exit_hook(t_all *all)
 {
+	mlx_clear_window(all->mlx->mlx, all->mlx->win);
 	mlx_destroy_window(all->mlx->mlx, all->mlx->win);
-	free_all(all->file);
+	mlx_destroy_image(all->mlx->mlx, all->mlx->img);
+	mlx_destroy_image(all->mlx->mlx, all->file->img_txt[0].img);
+	mlx_destroy_image(all->mlx->mlx, all->file->img_txt[1].img);
+	mlx_destroy_image(all->mlx->mlx, all->file->img_txt[2].img);
+	mlx_destroy_image(all->mlx->mlx, all->file->img_txt[3].img);
+	/*free(all->file->img_txt[0].img);
+	free(all->file->img_txt[1].img);
+	free(all->file->img_txt[2].img);
+	free(all->file->img_txt[3].img);
+	*/free_all(all->file);
+	mlx_destroy_display(all->mlx->mlx);
+	free(all->mlx->mlx);
+
 	exit(0);
 }
 
